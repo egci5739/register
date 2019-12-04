@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "config/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyw.register.dao.ProcessDao">
+    <!--更新进程id-->
+    <update id="setProcessId">
+        UPDATE ProcessTable SET processRegister = #{id}
+    </update>
+    <!--设置监控程序进程状态-->
+    <update id="setRegisterStatus">
+        update ProcessTable set processRegisterStatus = 1;
+    </update>
+
+</mapper>

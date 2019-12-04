@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "config/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyw.register.dao.StaffDao">
+    <!--卡号查询单个人员-->
+    <select id="getSingleStaff" parameterType="String"
+            resultType="com.dyw.register.entity.StaffEntity" flushCache="true">
+        select * from StaffTable where staffCardNumber=#{staffCardNumber}
+    </select>
+    <!--新增人员信息-->
+    <insert id="insertStaff" parameterType="com.dyw.register.entity.StaffEntity" flushCache="true">
+        INSERT INTO StaffTable
+        (staffName,staffCardId,staffCardNumber,staffBirthday,staffGender,staffCompany,staffEmpId,staffValidity)
+        VALUES
+        (#{staffName},#{staffCardId},#{staffCardNumber},#{staffBirthday},#{staffGender},#{staffCompany},#{staffEmpId},#{staffValidity})
+    </insert>
+    <!--更新人员信息：卡号替换-->
+    <update id="updateStaffWithCardChange" parameterType="com.dyw.register.entity.StaffEntity" flushCache="true">
+        UPDATE StaffTable SET
+        staffEmpId=#{staffEmpId},
+        staffCardNumber=#{staffCardNumber}
+        WHERE staffCardNumber = #{staffOldCardNumber}
+    </update>
+    <!--更新人员信息-->
+    <update id="updateStaff" parameterType="com.dyw.register.entity.StaffEntity" flushCache="true">
+        UPDATE StaffTable SET
+        staffName=#{staffName},
+        staffCardId=#{staffCardId},
+        staffBirthday=#{staffBirthday},
+        staffGender=#{staffGender},
+        staffCompany=#{staffCompany},
+        staffEmpId=#{staffEmpId},
+        staffValidity=#{staffValidity}
+        WHERE staffCardNumber = #{staffCardNumber}
+    </update>
+    <!--删除人员信息-->
+    <delete id="deleteStaff" parameterType="String" flushCache="true">
+        UPDATE StaffTable SET staffValidity = 0 where staffCardNumber = #{staffCardNumber}
+    </delete>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "config/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyw.register.dao.EquipmentDao">
+    <!--查询所有一体机设备-->
+    <select id="getAllEquipment" resultType="com.dyw.register.entity.EquipmentEntity" flushCache="true">
+        select * from EquipmentTable where equipmentType=1;
+    </select>
+</mapper>
